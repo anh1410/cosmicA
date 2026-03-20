@@ -9,19 +9,17 @@ permissions:
 jobs:
   build_site:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./cosmic-web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install & Build
+        working-directory: cosmic-web
         run: |
           npm install
           npm run build
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./cosmic-web/dist"
+          path: "cosmic-web/dist"
       - name: Deploy
         uses: actions/deploy-pages@v4
